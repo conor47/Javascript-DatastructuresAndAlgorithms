@@ -15,7 +15,7 @@ function countUnique(arr) {
   return unique;
 }
 
-console.log(countUniqueV2([]));
+console.log(countUnique([1]));
 
 function countUniqueV2(arr) {
   if (arr.length === 0) return 0;

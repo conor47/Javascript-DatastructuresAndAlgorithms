@@ -7,4 +7,4 @@ function isPalindrome(str) {
   return false;
 }
 
-console.log(isPalindrome("awesome"));
+console.log(isPalindrome("totot"));

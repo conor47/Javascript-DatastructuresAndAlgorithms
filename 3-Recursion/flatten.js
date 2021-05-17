@@ -5,7 +5,7 @@ function flatten(oldArr) {
     if (Array.isArray(oldArr[i])) {
       newArray = newArray.concat(flatten(oldArr[i]));
     } else {
-      newArray.push(oldArr[i]);
+      newArray.push(oldArr[i] ** 2);
     }
   }
 

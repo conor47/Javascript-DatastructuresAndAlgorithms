@@ -11,7 +11,6 @@ function insertionSort(nums) {
       [nums[j], nums[j - 1]] = [nums[j - 1], nums[j]];
       j--;
     }
-    console.log(nums);
   }
   return nums;
 }

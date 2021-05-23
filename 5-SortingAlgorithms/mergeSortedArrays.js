@@ -27,5 +27,3 @@ function mergeSortedArrays(arr1, arr2) {
 
   return sortedArray;
 }
-
-console.log(mergeSortedArrays([100], [3, 4, 7, 8, 10]));

@@ -26,6 +26,7 @@ class SinglyLinkedList {
       this.tail = newNode;
     }
     this.length++;
+    return newNode;
   }
 
   pop() {
@@ -73,12 +74,81 @@ class SinglyLinkedList {
     this.length++;
     return this;
   }
+
+  get(index) {
+    if (index < 0 || index >= this.length) {
+      return null;
+    }
+    var count = 0;
+    var temp = this.head;
+    while (count < index) {
+      temp = temp.next;
+      count++;
+    }
+    return temp;
+  }
+
+  set(index, val) {
+    var foundNode = this.get(index);
+    if (foundNode) {
+      foundNode.val = val;
+      return true;
+    }
+    return false;
+  }
+
+  display() {
+    var temp = this.head;
+    while (temp !== null) {
+      console.log(temp.val);
+      temp = temp.next;
+    }
+  }
+
+  insert(index, val) {
+    if (index < 0 || index > this.length) {
+      return false;
+    } else if (index === 0) {
+      return !!this.unshift(val); // double negation is a trick we use to convert the return value of a function into a boolean
+    } else if (index === this.length) {
+      return !!this.push(val);
+    } else {
+      var newNode = new Node(val);
+      var temp = this.get(index - 1);
+      newNode.next = temp.next;
+      temp.next = newNode;
+      this.length++;
+      return true;
+    }
+  }
+
+  remove(index) {
+    if (index < 0 || index > this.length) return undefined;
+    else if (index === 0) return this.shift();
+    else if (index === this.length) return this.pop();
+    else {
+      var prev = this.get(index - 1);
+      var temp = prev.next;
+      prev.next = temp.next;
+      this.length--;
+      return temp;
+    }
+  }
+
+  reverse() {
+    var temp = this.head;
+    this.head = this.tail;
+    this.tail = temp;
+
+    var next;
+    var prev = null;
+    var node = this.tail;
+    while (node) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
+    return this;
+  }
 }
-
-var list = new SinglyLinkedList();
-
-list.push(25);
-list.push(30);
-list.push(35);
-
-console.log(list.unshift(20));

@@ -21,6 +21,14 @@ class DoublyLinkedList {
     }
   }
 
+  reverseDisplay() {
+    var temp = this.tail;
+    while (temp) {
+      console.log(temp.val);
+      temp = temp.prev;
+    }
+  }
+
   push(val) {
     var node = new Node(val);
     if (!this.head) {
@@ -78,17 +86,74 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
+    var count, temp;
+    if (index <= Math.floor(this.length / 2)) {
+      temp = this.head;
+      count = 0;
+      while (count != index) {
+        temp = temp.next;
+        count++;
+      }
+    } else {
+      temp = this.tail;
+      count = this.length - 1;
+      while (count != index) {
+        temp = temp.prev;
+        count--;
+      }
+    }
+    return temp;
+  }
+
+  set(index, val) {
+    if (this.get(index)) {
+      this.get(index).val = val;
+      return true;
+    }
+    return false;
+  }
+
+  insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) return !!this.unshift(val);
+    if (index === this.length) return !!this.push(val);
+    var newNode = new Node(val);
+    var temp = this.get(index);
+    temp.prev.next = newNode;
+    newNode.prev = temp.prev;
+    newNode.next = temp;
+    temp.prev = newNode;
+    this.length++;
+    return true;
+  }
+
+  remove(index) {
+    if (index < 0 || index > this.length) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+    var node = this.get(index);
+    node.next.prev = node.prev;
+    node.prev.next = node.next;
+    node.prev = null;
+    node.next = null;
+    this.length--;
+    return node;
+  }
 }
 
 let list = new DoublyLinkedList();
 list.push(40);
 list.push(50);
 list.push(60);
+list.push(70);
+list.push(80);
+list.push(90);
+list.push(100);
+list.push(110);
 list.display();
 console.log("-----");
-list.shift();
-list.shift();
-list.shift();
-list.unshift(100);
-
+console.log(list.remove(0));
 list.display();

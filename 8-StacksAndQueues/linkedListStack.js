@@ -26,6 +26,7 @@ class Stack {
   }
 
   pop() {
+    kz;
     if (!this.first) return null;
     var temp = this.first;
     if (this.first === this.last) {

@@ -72,4 +72,6 @@ bst.insert(15);
 bst.insert(3);
 bst.insert(8);
 bst.insert(20);
+bst.insert(1);
+
 console.log(bst.bfs());

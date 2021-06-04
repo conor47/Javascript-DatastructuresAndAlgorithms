@@ -1,0 +1,2 @@
+heap.extractMax();
+heap.display();

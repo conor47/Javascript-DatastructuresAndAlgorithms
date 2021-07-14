@@ -35,6 +35,8 @@ class HashTable {
     this.keyMap[index].push([key, value]);
   }
 
+  // note our set method does not check for duplicate keys. We can insert the same key multiple times and we will only get back the one that was inserted first
+
   get(key) {
     let index = this._hash(key);
     if (this.keyMap[index]) {

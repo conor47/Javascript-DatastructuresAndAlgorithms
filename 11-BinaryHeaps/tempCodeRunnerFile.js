@@ -1,0 +1,2 @@
+Er.dequeue();
+Er.display();

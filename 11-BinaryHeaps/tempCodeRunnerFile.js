@@ -1,2 +1,0 @@
-Er.dequeue();
-Er.display();

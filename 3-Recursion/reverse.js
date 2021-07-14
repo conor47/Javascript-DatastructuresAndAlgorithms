@@ -4,3 +4,4 @@ function reverse(str) {
 }
 
 console.log(reverse("hello"));
+console.log("conorladrigan".slice(1) + "conorladrigan"[0]);

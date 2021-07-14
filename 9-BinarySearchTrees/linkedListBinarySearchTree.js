@@ -59,4 +59,4 @@ bst.insert(15);
 bst.insert(20);
 // bst.insert(12);
 
-console.log(bst.contains(12));
+console.log(bst.contains(20));

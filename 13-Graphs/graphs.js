@@ -82,4 +82,24 @@ class Graph {
 
     return result;
   }
+
+  bfsIterative(start) {
+    const result = [];
+    const queue = [start];
+    const visited = {};
+    let vertex;
+    visited[start] = true;
+    while (queue.length) {
+      vertex = queue.shift();
+      result.push(vertex);
+
+      this.adjacencyList[vertex].forEach((neighbour) => {
+        if (!visited[neighbour]) {
+          visited[neighbour] = true;
+          queue.push(neighbour);
+        }
+      });
+    }
+    return result;
+  }
 }

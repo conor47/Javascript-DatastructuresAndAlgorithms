@@ -22,10 +22,10 @@ class Graph {
 
   removeEdge(vertex1, vertex2) {
     this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(
-      vertex != vertex2
+      (vertex) => vertex != vertex2
     );
     this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(
-      vertex != vertex1
+      (vertex) => vertex != vertex1
     );
   }
 
@@ -36,5 +36,50 @@ class Graph {
     }
 
     delete this.adjacencyList[vertex];
+  }
+
+  dfsRecursive(start) {
+    const result = [];
+    const visited = {};
+
+    // this is necessary as the meaning of this changes when inside the helper function. we do this to preserve the adjacency list
+
+    const adjacencyList = this.adjacencyList;
+
+    // here we define an anonymous helper function and immediately call it after declaration
+
+    (function dfs(vertex) {
+      if (!vertex) return null;
+      visited[vertex] = true;
+      result.push(vertex);
+      adjacencyList[vertex].forEach((neighbour) => {
+        if (!visited[neighbour]) {
+          return dfs(neighbour);
+        }
+      });
+    })(start);
+
+    return result;
+  }
+
+  dfsIterative(start) {
+    const result = [];
+    const visited = {};
+    const stack = [];
+    let vertex;
+    stack.push(start);
+    visited[start] = true;
+    while (stack.length) {
+      vertex = stack.pop();
+      result.push(vertex);
+      this.adjacencyList[vertex].forEach((neighbour) => {
+        if (!visited[neighbour]) {
+          visited[neighbour] = true;
+          stack.push(neighbour);
+        }
+      });
+    }
+
+    return result;
   }
 }

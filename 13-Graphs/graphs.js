@@ -2,6 +2,8 @@ class Graph {
   // We are building an undirected graph
 
   constructor() {
+    // we will use an adjacency list to represent a graph. We could have alternatively used an adjacency matrix
+
     this.adjacencyList = {};
   }
 
@@ -62,6 +64,8 @@ class Graph {
     return result;
   }
 
+  // we will make use of a stack to perform depth first search
+
   dfsIterative(start) {
     const result = [];
     const visited = {};
@@ -82,6 +86,8 @@ class Graph {
 
     return result;
   }
+
+  // we will make use of a queue to perform breadth first search
 
   bfsIterative(start) {
     const result = [];

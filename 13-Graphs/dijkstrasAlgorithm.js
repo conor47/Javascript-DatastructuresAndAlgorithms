@@ -3,6 +3,9 @@ class WeightedGraph {
     this.adjacencyList = {};
   }
 
+  // for the sake of simplicity we will add only methods for adding edges and vertexes. We don't need removal methods for implementing
+  // dijkstras algorithm
+
   addVertex(vertex) {
     if (!this.adjacencyList[vertex]) {
       this.adjacencyList[vertex] = [];

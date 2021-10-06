@@ -20,7 +20,7 @@ const fibonacciMemo = (n, memo = []) => {
   return res;
 };
 
-// Bottom up implementation
+// Bottom up implementation / tabulated implementation
 
 const fibonacciTabulated = (n) => {
   if (n <= 2) return 1;

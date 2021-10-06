@@ -1,10 +1,4 @@
-class Node {
-  constructor(val) {
-    this.right = null;
-    this.left = null;
-    this.val = val;
-  }
-}
+w
 
 class BinarySearchTree {
   constructor() {

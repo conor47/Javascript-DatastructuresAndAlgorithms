@@ -3,7 +3,7 @@
 // The function takes an array of elements
 
 function bubbleSort(arr) {
-  if (arr.lenght < 1) return null;
+  if (arr.length < 1) return null;
 
   for (let i = arr.length - 1; i > 0; i--) {
     for (let j = 0; j < i; j++) {

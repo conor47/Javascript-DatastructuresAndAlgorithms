@@ -26,7 +26,6 @@ class Stack {
   }
 
   pop() {
-    kz;
     if (!this.first) return null;
     var temp = this.first;
     if (this.first === this.last) {
@@ -38,13 +37,7 @@ class Stack {
   }
 }
 
-var stack = new Stack();
-stack.push(1);
-stack.push(2);
-stack.push(3);
-stack.push(4);
-stack.push(5);
-
-stack.pop();
-
-console.log(stack);
+module.exports = {
+  Stack,
+  Node,
+};

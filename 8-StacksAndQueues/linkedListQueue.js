@@ -34,4 +34,24 @@ class Queue {
     this.size--;
     return temp.val;
   }
+
+  isEmpty() {
+    if (!this.first) return null;
+    return this.size === 0;
+  }
+
+  getFront() {
+    if (!this.first) return null;
+    return this.first;
+  }
+
+  getTail() {
+    if (!this.first) return null;
+    return this.last;
+  }
+
+  size() {
+    if (!this.first) return null;
+    return this.size;
+  }
 }

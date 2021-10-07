@@ -67,5 +67,62 @@ class Trie {
     return false;
   }
 
-  delete(key)
+  //   helper function to determine if a given node has any children
+  hasNoChildren(currentNode) {
+    for (let i = 0; i < currentNode.children.length; i++) {
+      if (currentNode.children[i] !== null) return false;
+    }
+    return true;
+  }
+
+  deleteHelper(key, currentNode, length, level) {
+    let deletedSelf = false;
+
+    if (currentNode === null) {
+      return deletedSelf;
+    }
+
+    //   This is the base case
+    //   we have reached the last character in the key
+    if (level === length) {
+      // if there are no nodes ahead of this node we can delete this node
+      if (this.hasNoChildren(currentNode)) {
+        currentNode = null;
+        deletedSelf = true;
+      }
+
+      // if there are nodes ahead of this node we cannot delete it. We unmark it as a leaf node
+      else {
+        currentNode.unMarkAsLeaf();
+        deletedSelf = false;
+      }
+    }
+    //   The recursive case.
+    else {
+      let childNode = currentNode.children[this.getIndex(key[level])];
+      let childDeleted = this.deleteHelper(key, childNode, length, level + 1);
+      if (childDeleted) {
+        currentNode.children[this.getIndex(key[level])] = null;
+
+        // the current node is a leaf node and therefore part of another key and cannot be deleted
+        if (currentNode.endWord) {
+          deletedSelf = false;
+        } else if (this.hasNoChildren(childNode) === false) {
+          deletedSelf = false;
+        } else {
+          currentNode = null;
+          deletedSelf = true;
+        }
+      } else {
+        deletedSelf = false;
+      }
+
+      return deletedSelf;
+    }
+  }
+
+  delete(key) {
+    if (this.root === key || key === null) return;
+    this.deleteHelper(key, this.root, key.length, 0);
+  }
 }
